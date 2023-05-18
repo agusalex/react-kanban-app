@@ -3,9 +3,10 @@ import {
     DELETE_TASK,
     DELETE_ROW,
     ADD_ROW,
+    UPDATE_TASK,
     DataActionTypes,
 } from './dataActions';
-import {DataState} from "../types/Model";
+import { DataState } from "../types/Model";
 import { dataTaskMock, dataRowMock } from "../data/Mock";
 
 // Load state from local storage
@@ -13,7 +14,7 @@ const loadStateFromLocalStorage = (): DataState => {
     try {
         const serializedState = localStorage.getItem('appState');
         if (serializedState === null) {
-            return { tasks: dataTaskMock(), rows: dataRowMock(), loading: false, error: null }; // Fallback to initialState if no state found in local storage
+            return { tasks: [], rows: dataRowMock(), loading: false, error: null }; // Fallback to initialState if no state found in local storage
         }
         return JSON.parse(serializedState);
     } catch (error) {
@@ -42,7 +43,6 @@ const dataReducer = (state = initialState, action: DataActionTypes): DataState =
             saveStateToLocalStorage(newStateWithDeletedTask);
             return newStateWithDeletedTask;
 
-
         case ADD_ROW:
             const newStateWithAddedRow = {
                 ...state,
@@ -60,6 +60,15 @@ const dataReducer = (state = initialState, action: DataActionTypes): DataState =
             saveStateToLocalStorage(newStateWithDeletedRow);
             return newStateWithDeletedRow;
 
+        case UPDATE_TASK:
+            const newStateWithUpdatedTask = {
+                ...state,
+                tasks: state.tasks.map(task =>
+                    task.id === action.payload.task.id ? action.payload.task : task
+                ),
+            };
+            saveStateToLocalStorage(newStateWithUpdatedTask);
+            return newStateWithUpdatedTask;
 
         default:
             return state;
