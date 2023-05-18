@@ -1,4 +1,6 @@
-# Kanban Board Create React App
+# Kanban Board Create React App [Click for demo](https://react-kanban-app-six.vercel.app/)
+
+![screenshot of demo](https://raw.githubusercontent.com/agusalex/firebase-ecommerce/main/example-readme.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
