@@ -37,7 +37,7 @@ function Board() {
         }
     };
 
-    function getRows() {
+    function buildColumns() {
         let grids = new Map();
         let rows = [];
 
@@ -63,7 +63,7 @@ function Board() {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
-                {getRows()}
+                {buildColumns()}
             </Grid>
         </DragDropContext>
     );

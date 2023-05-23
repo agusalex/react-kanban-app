@@ -2,7 +2,6 @@ export interface Task {
     id: number;
     rowId: string;
     title: string;
-
     star: boolean;
     description: string;
     image?: string;

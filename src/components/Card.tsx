@@ -74,7 +74,7 @@ return (
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton onClick={handleStar} aria-label="add to favorites">
+                    <IconButton aria-label="add to favorites">
                         <StarIcon sx={task.star ? {color: yellow[700]} : {}}/>
                     </IconButton>
                 </CardActions>

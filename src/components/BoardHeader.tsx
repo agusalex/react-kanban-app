@@ -8,13 +8,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 // import the deleteTask action from dataActions
 import CardFormPopup from "./CardForm";
 import {deleteRow} from "../actions/dataActions";
-import {Delete} from "@mui/icons-material";
+import {Delete, SortByAlpha} from "@mui/icons-material";
 
-interface TitleProps {
+interface HeaderProps {
     row: string
+    onSort: () => void;
 }
 
-function BoardHeader(props: TitleProps) {
+function BoardHeader(props: HeaderProps) {
     const dispatch = useDispatch();
     const [openForm, setOpenForm] = useState(false);
 
@@ -31,15 +32,20 @@ function BoardHeader(props: TitleProps) {
         dispatch(deleteRow(props.row));
     }
 
-    return <Box >
+    return <Box>
         <Box display="flex" justifyContent="center" flex-direction="row" alignItems="center">
             <h1>{props.row}</h1>
-            <IconButton style={{paddingTop:"12px"}} size="small" color="inherit" onClick={handleDelete}>
+            <IconButton style={{paddingTop: "12px"}} size="small" color="inherit" onClick={handleDelete}>
                 <Badge>
                     <Delete/>
                 </Badge>
             </IconButton>
         </Box>
+        <IconButton size="large" color="inherit" onClick={props.onSort}>
+            <Badge>
+                <SortByAlpha/>
+            </Badge>
+        </IconButton>
         <IconButton size="large" color="inherit" onClick={handleOpenForm}>
             <Badge>
                 <AddIcon/>

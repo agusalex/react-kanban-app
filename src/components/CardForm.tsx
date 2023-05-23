@@ -43,7 +43,7 @@ export default function CardFormPopup({open, row, onClose}: CardFormPopupProps) 
             image: imageUrl,
             star: false
         };
-        console.log(task);
+       // console.log(task);
         dispatch(addTask(task));
         onClose();
     };
