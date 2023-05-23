@@ -17,21 +17,12 @@ function BoardColumn(props: ColumnProps) {
     const StyledGrid = styled(Grid)`
       padding: 20px;
     `;
-
-    const sortedTasks = props.tasks.sort((t1: Task, t2: Task) => {
-        return t1.title.toLowerCase() > t2.title.toLowerCase() ? 1 : -1;
-    });
-
-   // let [getUnstarred, setUnstarred] = useState(props.tasks.filter(t => !t.star))
     let [getAlphabeticOrder, setAlphabeticOrder] = useState(false)
 
     function getUnstarredFn(): Task[] {
         let unstarred = props.tasks.filter(t => !t.star)
         if (getAlphabeticOrder) {
            unstarred.sort((t1: Task, t2: Task) => {
-              /* if (getAlphabeticOrder) {
-                   return t1.title.toLowerCase() > t2.title.toLowerCase() ? 1 : -1;
-               }*/
                 return t1.title.toLowerCase() > t2.title.toLowerCase() ? -1 : 1;
             });
         }
@@ -48,7 +39,6 @@ function BoardColumn(props: ColumnProps) {
     }
 
     const starred = props.tasks.filter(t => t.star);
-    //const unstarred = props.tasks.filter(t => !t.star);
 
     return (
 
